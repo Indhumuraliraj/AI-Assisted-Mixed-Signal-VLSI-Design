@@ -498,7 +498,24 @@ Each stage should generate a clear PASS or FAIL result.
 The scripts should stop or report failure when a stage fails.
 ```
 
----
+
+Actual result:
+
+![image]()
+
+# PVT Verification Summary
+
+| Parameter                 | Test Conditions     | Result  |
+| ------------------------- | ------------------- | ------- |
+| Process                   | TT / SS / FF        | PASS    |
+| Voltage                   | 1.62 / 1.8 / 1.98 V | PASS    |
+| Temperature               | -40 / 27 / 125 °C   | PASS    |
+| Total PVT points          | 27                  | 27 PASS |
+| Voltage error limit       | 50 mV               | PASS    |
+| Nominal voltage error     | 2.19 µV             | PASS    |
+| Nominal propagation delay | 41.50 ps            | PASS    |
+| Nominal rise time         | 63.46 ps            | PASS    |
+| Nominal fall time         | 65.48 ps            | PASS    |
 
 # 15. AI Output – Physical Verification Scripts
 
@@ -538,10 +555,7 @@ PASS / FAIL
 
 Actual result:
 
-```text
-DRC: PASS
-PASS
-```
+![image]()
 
 ---
 
@@ -565,10 +579,7 @@ SPICE Netlist
 
 Actual result:
 
-```text
-EXTRACTION: PASS
-PASS
-```
+![Image]()
 
 The extracted netlist is then used for:
 
@@ -604,10 +615,7 @@ Extracted Netlist
 
 Actual result:
 
-```text
-LVS: PASS
-PASS
-```
+![Image]()
 
 ---
 
@@ -674,21 +682,7 @@ The script measures:
 
 The actual nominal simulation produced:
 
-```text
-================================================
-POST-LAYOUT RESULTS
-================================================
-
-ngspice exit code : 0
-verror             : 2.18994e-06
-tpd                : 4.14952e-11
-trise              : 6.34611e-11
-tfall              : 6.54849e-11
-
-================================================
-POST_LAYOUT_SIM: PASS
-PASS
-```
+![image]()
 
 Converted values:
 
@@ -754,153 +748,11 @@ Command:
 
 # 24. Complete Sign-Off Output
 
-![image]()
-
 The actual verification run produced:
 
-```text
-DESIGN MUX SIGN-OFF
-================================
+![image]()
 
-[1] DRC]
-DRC: PASS
-PASS
 
-[2] Extraction]
-EXTRACTION: PASS
-PASS
-
-[3] LVS]
-LVS: PASS
-PASS
-
-[4] Post-layout simulation]
-================================================
-POST-LAYOUT RESULTS
-================================================
-ngspice exit code : 0
-verror             : 2.18994e-06
-tpd                : 4.14952e-11
-trise              : 6.34611e-11
-tfall              : 6.54849e-11
-================================================
-POST_LAYOUT_SIM: PASS
-PASS
-
-[5] PVT characterization]
-
-PVT CHARACTERIZATION SUMMARY
-=============================
-Total runs : 27
-PASS       : 27
-FAIL       : 0
-
-Verror limit used: 50 mV
-
-PASS
-
-================================
-FINAL SIGN-OFF: PASS
-================================
-```
-
----
-
-# 25. PVT Results
-
-[!Image]()
-
-The PVT characterization covers:
-
-```text
-Process:
-TT
-SS
-FF
-
-Voltage:
-1.62 V
-1.80 V
-1.98 V
-
-Temperature:
--40 °C
-27 °C
-125 °C
-```
-
-Total:
-
-```text
-3 × 3 × 3 = 27
-```
-
-Final result:
-
-```text
-Total runs : 27
-PASS       : 27
-FAIL       : 0
-```
-
-Therefore:
-
-```text
-PVT = PASS
-```
-
-The voltage accuracy limit was:
-
-```text
-50 mV
-```
-
-Results are stored in:
-
-```text
-simulation/pvt/results/pvt_results.csv
-```
-
----
-
-# 26. Worst-Case Operating Conditions
-
-The PVT characterization is used to identify operating conditions that produce the largest:
-
-* Propagation delay
-* Rise time
-* Fall time
-* Output voltage error
-
-The worst-case condition observed during debugging was the slow corner:
-
-```text
-Process     : SS
-Supply      : 1.62 V
-Temperature : -40 °C
-```
-
-This condition produced significantly slower transitions and required additional simulation time for accurate rise/fall measurements.
-
-The final PVT testbench was modified to accommodate this worst-case behavior.
-
----
-
-# 27. PVT Verification Summary
-
-| Parameter                 | Test Conditions     | Result  |
-| ------------------------- | ------------------- | ------- |
-| Process                   | TT / SS / FF        | PASS    |
-| Voltage                   | 1.62 / 1.8 / 1.98 V | PASS    |
-| Temperature               | -40 / 27 / 125 °C   | PASS    |
-| Total PVT points          | 27                  | 27 PASS |
-| Voltage error limit       | 50 mV               | PASS    |
-| Nominal voltage error     | 2.19 µV             | PASS    |
-| Nominal propagation delay | 41.50 ps            | PASS    |
-| Nominal rise time         | 63.46 ps            | PASS    |
-| Nominal fall time         | 65.48 ps            | PASS    |
-
----
 
 # 28. OpenLane Integration
 
@@ -966,7 +818,7 @@ cd clean_clone_test
 Clone the repository:
 
 ```bash
-git clone <GITHUB_REPOSITORY_URL>
+git clone https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design
 ```
 
 Enter the project:
@@ -978,7 +830,7 @@ cd design_mux
 Make scripts executable:
 
 ```bash
-chmod +x scripts/*.sh
+chmod +x scripts/run_signoff.sh
 ```
 
 Run the complete flow:
@@ -1173,88 +1025,6 @@ The major debugging issues included:
 * Slow-corner timing problems
 * LVS net-label mismatch
 
-After debugging and correction, the complete verification flow passed.
 
-The nominal post-layout simulation achieved:
-
-```text
-Propagation Delay = 41.50 ps
-Rise Time         = 63.46 ps
-Fall Time         = 65.48 ps
-Output Error      = 2.19 µV
-```
-
-The PVT characterization covered:
-
-```text
-TT / SS / FF
-×
-1.62 V / 1.80 V / 1.98 V
-×
--40 °C / 27 °C / 125 °C
-```
-
-for a total of:
-
-```text
-27 PVT conditions
-```
-
-with:
-
-```text
-27 PASS
-0 FAIL
-```
-
-The physical verification also passed:
-
-```text
-DRC       → PASS
-Extraction → PASS
-LVS       → PASS
-Post-layout Simulation → PASS
-PVT       → 27/27 PASS
-```
-
-The complete verification flow can be executed using:
-
-```bash
-./scripts/run_signoff.sh
-```
-
-and produces:
-
-```text
-================================
-FINAL SIGN-OFF: PASS
-================================
-```
-
-Therefore, the AMUX2_3V macro has been successfully verified for **functionality, physical correctness, post-layout performance, PVT robustness, automation and reproducibility**, making it suitable for reuse in the intended mixed-signal physical-design flow.
-
----
-
-# 37. Final Status
-
-```text
-==================================================
-       AMUX2_3V TASK 5 FINAL STATUS
-==================================================
-
-AI-Assisted Development       : COMPLETE
-PVT Characterization          : PASS
-PVT Runs                      : 27/27 PASS
-DRC                           : PASS
-Extraction                    : PASS
-LVS                           : PASS
-Post-Layout Simulation        : PASS
-OpenLane Integration          : COMPLETE
-Reproducibility Verification  : PASS
-Automated Sign-Off            : PASS
-
-==================================================
-             FINAL SIGN-OFF: PASS
-==================================================
 ```
 
