@@ -167,6 +167,7 @@ The script was then modified to work with the actual SKY130A installation and ex
 Final scripts:
 
 
+- [PVT script](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/scripts/run_pvt.sh)
 
 ---
 
@@ -501,8 +502,8 @@ The scripts should stop or report failure when a stage fails.
 
 Actual result:
 
-![image]()
-
+![image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/pvt.png) | ![image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/pvt_result.png)
+|:--:|:--:|
 # PVT Verification Summary
 
 | Parameter                 | Test Conditions     | Result  |
@@ -521,13 +522,14 @@ Actual result:
 
 The AI generated separate scripts:
 
-```text
-scripts/
-├── run_drc.sh
-├── run_extract.sh
-├── run_lvs.sh
-└── run_postlayout.sh
-```
+
+
+- [DRC script](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/scripts/run_drc.sh)
+- [extract script](http://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/scripts/run_extract.sh)
+- [LVS script](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/scripts/run_lvs.sh)
+- [postlayout script](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/scripts/run_postlayout.sh)
+
+
 
 Each script performs one verification stage.
 
@@ -555,7 +557,7 @@ PASS / FAIL
 
 Actual result:
 
-![image]()
+![image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/drc.png)
 
 ---
 
@@ -579,7 +581,7 @@ SPICE Netlist
 
 Actual result:
 
-![Image]()
+![Image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/extracted.png)
 
 The extracted netlist is then used for:
 
@@ -615,7 +617,7 @@ Extracted Netlist
 
 Actual result:
 
-![Image]()
+![Image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/lvs.png)
 
 ---
 
@@ -682,7 +684,7 @@ The script measures:
 
 The actual nominal simulation produced:
 
-![image]()
+![image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/postlayout.png)
 
 Converted values:
 
@@ -717,6 +719,7 @@ PASS or FAIL result.
 # 23. AI Output – `run_signoff.sh`
 
 The resulting script:
+- [Final Sign-off script](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/scripts/run_signoff.sh)
 
 ```text
 scripts/run_signoff.sh
@@ -750,7 +753,8 @@ Command:
 
 The actual verification run produced:
 
-![image]()
+![image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/signoff.png) | ![image](https://github.com/Indhumuraliraj/AI-Assisted-Mixed-Signal-VLSI-Design/blob/main/ss/signoff1.png)
+|:--:|:--:|
 
 
 
@@ -1025,6 +1029,5 @@ The major debugging issues included:
 * Slow-corner timing problems
 * LVS net-label mismatch
 
-
-```
+---
 
