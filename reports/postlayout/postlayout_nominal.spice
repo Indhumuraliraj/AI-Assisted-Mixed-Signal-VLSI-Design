@@ -1,0 +1,34 @@
+* pvt_template.spice
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include "/home/indhu/Desktop/mixed_signal_VLSI/pdks/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8__mismatch.corner.spice"
+.include "/home/indhu/Desktop/mixed_signal_VLSI/pdks/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8__mismatch.corner.spice"
+.include "/home/indhu/Desktop/mixed_signal_VLSI/pdks/sky130A/libs.tech/ngspice/all.spice"
+
+.include "/home/indhu/Desktop/mixed_signal_VLSI/pdks/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8__tt.pm3.spice"
+.include "/home/indhu/Desktop/mixed_signal_VLSI/pdks/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__pfet_01v8__tt.corner.spice"
+.temp 27
+
+.param vdd_val = 3.0
+
+.include "/home/indhu/Desktop/mixed_signal_VLSI/OpenLane/designs/design_mux/macros/AMUX2_3V/AMUX2_3V_extracted.spice"
+
+Vvpwr  VPWR   0   DC vdd_val
+Vvgnd  VGND   0   DC 0
+Vi0    I0     0   DC 'vdd_val*0.667'
+Vi1    I1     0   DC 'vdd_val*0.333'
+
+Vsel   select 0   PWL(0 0  0.5n 0  0.51n 'vdd_val'  10n 'vdd_val'  10.01n 0  15n 0)
+
+Xmux  I0 I1 select out VPWR VGND  AMUX2_3V
+Cload  out 0 10f
+
+.tran 1p 15n
+
+.include "/home/indhu/Desktop/mixed_signal_VLSI/OpenLane/designs/design_mux/simulation/pvt/measure.sp"
+
+.control
+run
+.endc
+
+.end

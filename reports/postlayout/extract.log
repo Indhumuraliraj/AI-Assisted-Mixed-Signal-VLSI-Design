@@ -1,0 +1,28 @@
+
+Magic 8.3 revision 668 - Compiled on Tue Jun 30 07:55:41 AM UTC 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Using technology "minimum", version 0.0
+Cell AMUX2_3V read from path /home/indhu/Desktop/mixed_signal_VLSI/OpenLane/designs/design_mux/macros/AMUX2_3V
+Cell AMUX2_3V has technology "sky130A", but current technology is "minimum"
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading technology sky130A
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Scaled magic input cell AMUX2_3V geometry by factor of 2
+Extracting AMUX2_3V into /home/indhu/Desktop/mixed_signal_VLSI/OpenLane/designs/design_mux/reports/postlayout/ext/AMUX2_3V.ext:
+Processing AMUX2_3V

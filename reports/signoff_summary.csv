@@ -1,0 +1,7 @@
+stage,status
+1] DRC,PASS
+2] Extraction,PASS
+3] LVS,PASS
+4] Post-layout simulation,PASS
+5] PVT characterization,PASS
+FINAL,PASS
